@@ -1,5 +1,6 @@
 const Category = (props) => {
-  const { setWordToGuess, wordToGuess } = props;
+  const { gameSession } = props;
+  const { setWordToGuess, wordToGuess, lettersGuessed } = gameSession;
 
   const colours = ["blue", "red", "green"];
   const animals = ["cat", "dog", "lion"];
@@ -30,7 +31,13 @@ const Category = (props) => {
 
       <label htmlFor="guessedWord">Word</label>
       <span id="guessedWord">
-        {wordToGuess.split("").map((character) => " _ ")}
+        {wordToGuess.split("").map((letter) => {
+          if (lettersGuessed.includes(letter)) {
+            return letter;
+          } else {
+            return " _ ";
+          }
+        })}
       </span>
     </div>
   );

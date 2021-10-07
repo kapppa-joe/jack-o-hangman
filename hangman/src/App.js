@@ -9,19 +9,47 @@ import Score from "./score";
 import Lives from "./lives";
 
 function App() {
-  const [wordToGuess, setWordToGuess] = useState("");
+  const initialGame = {
+    lives: 6,
+    wordToGuess: "",
+    lettersGuessed: [],
+  };
+
+  const [gameSession, setGameSession] = useState(initialGame);
+
+  // const [wordToGuess, setWordToGuess] = useState("");
+  // const [lettersGuessed, setLettersGuessed] = useState([]);
+
+  // const maxLives = 6;
+  // let livesRemain = maxLives;
+  for (const letter of gameSession.lettersGuessed) {
+    if (!gameSession.wordToGuess.includes(letter)) {
+      gameSession.lives -= 1;
+    }
+  }
+  console.log("lives remains: ", gameSession.livesRemain);
+
+  const resetGame = () => {};
 
   return (
     <div className="App">
-      <Header id="header" />
+      <Header />
       <Category
-        id="category"
-        setWordToGuess={setWordToGuess}
-        wordToGuess={wordToGuess}
+        // setWordToGuess={setWordToGuess}
+        // wordToGuess={wordToGuess}
+        // lettersGuessed={lettersGuessed}
+        gameSession={gameSession}
       />
-      <Guess id="guess" />
-      <Score id="score" />
-      <Lives id="lives" />
+      <Guess
+        // setLettersGuessed={setLettersGuessed}
+        // lettersGuessed={lettersGuessed}
+        gameSession={gameSession}
+      />
+      <Score />
+      <Lives
+        // livesRemain={livesRemain}
+        gameSession={gameSession}
+      />
     </div>
   );
 }
