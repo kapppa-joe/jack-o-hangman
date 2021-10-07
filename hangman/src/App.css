@@ -1,0 +1,36 @@
+.App {
+  text-align: center;
+  border: green solid 1px;
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100px 100px 100px auto;
+  grid-template-areas:
+    "header header"
+    "category category"
+    "guess score"
+    "guess lives";
+}
+
+#header {
+  grid-area: header;
+  border: green solid 1px;
+}
+#category {
+  grid-area: category;
+  border: green solid 1px;
+}
+#guess {
+  grid-area: guess;
+  border: green solid 1px;
+  display: flex;
+  flex-direction: column;
+}
+#score {
+  grid-area: score;
+  border: green solid 1px;
+}
+#lives {
+  grid-area: lives;
+  border: green solid 1px;
+}
