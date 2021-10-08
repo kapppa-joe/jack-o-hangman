@@ -26,7 +26,6 @@ label {
   margin: 10px;
 }
 
-#header,
 #word-hints,
 #guess,
 #score,
@@ -41,15 +40,25 @@ label {
   flex-direction: column;
   justify-content: center;
   background-color: black;
-  color: white;
 }
 
-.reset {
-  grid-area: reset;
+.title {
+  display: inline;
+  width: auto;
+  align-self: center;
+  background-color: #fff;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background 1s ease;
+}
+
+h1.blood {
+  background-image: -webkit-linear-gradient(0deg, #f00 0%, #700 30%, #fff);
+}
+
+#header .reset-button {
   position: absolute;
   right: 0;
-  top: 20px;
-
   margin: 15px;
 }
 

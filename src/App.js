@@ -16,6 +16,13 @@ function App() {
   const [categoryChosen, setCategory] = useState(category);
   const [lettersGuessed, setLettersGuessed] = useState([]);
 
+  const resetGame = () => {
+    const { category, word } = chooseWord();
+    setWordToGuess(word);
+    setCategory(category);
+    setLettersGuessed([]);
+  };
+
   const maxLives = 6;
   let livesRemain = maxLives;
   for (const letter of lettersGuessed) {
@@ -26,11 +33,6 @@ function App() {
       }
     }
   }
-
-  const resetGame = () => {
-    setWordToGuess("");
-    setLettersGuessed([]);
-  };
 
   return (
     <div className="App">
