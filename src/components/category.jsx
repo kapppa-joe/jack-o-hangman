@@ -1,6 +1,6 @@
 const Category = ({ setWordToGuess, wordToGuess, lettersGuessed }) => {
-  const colours = ["blue", "red", "green"];
-  const animals = ["cat", "dog", "lion"];
+  const colours = ["blue", "red", "green", "white", "black", "brown", "cyan"];
+  const animals = ["cat", "dog", "lion", "fish", "goat", "pig", "rat"];
 
   const randomIntBelow = (num) => {
     return Math.floor(Math.random() * num);
@@ -31,7 +31,7 @@ const Category = ({ setWordToGuess, wordToGuess, lettersGuessed }) => {
       </section>
       <section class="guessedWord">
         <label class="label" htmlFor="guessedWord">
-          Word
+          Word to guess:
         </label>
         <span class="span" id="guessedWord">
           {wordToGuess.split("").map((letter) => {

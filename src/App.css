@@ -1,0 +1,111 @@
+@font-face {
+  font-family: "Virgil";
+  src: local("Virgil"), url(./assets/fonts/Virgil.woff2) format("woff2");
+}
+
+* {
+  font-family: "Virgil";
+}
+
+.App {
+  text-align: center;
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 6rem auto;
+  grid-template-areas:
+    "header header"
+    "word-hints word-hints"
+    "guess score"
+    "guess lives";
+  background-color: lightgray;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+}
+label {
+  margin: 10px;
+}
+
+#header,
+#word-hints,
+#guess,
+#score,
+#lives {
+  border: solid 1px green;
+  padding: 1em;
+}
+
+#header {
+  grid-area: header;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: black;
+  color: white;
+}
+
+.reset {
+  grid-area: reset;
+  position: absolute;
+  right: 0;
+  top: 20px;
+
+  margin: 15px;
+}
+
+#guess {
+  grid-area: guess;
+}
+
+#guess input {
+  width: 3em;
+  margin: 0 2em;
+}
+
+#score {
+  grid-area: score;
+}
+#lives {
+  grid-area: lives;
+  font-weight: bold;
+}
+
+.title {
+  grid-area: title;
+  display: inline;
+}
+
+#word-hints {
+  grid-area: word-hints;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.blood-effect {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  filter: blur(1px), brightness(1.3), saturate(400%);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.blood-effect.show {
+  display: block;
+  animation: blood-effect 2s ease-in forwards;
+}
+
+@keyframes blood-effect {
+  from {
+    display: block;
+    filter: opacity(0.8);
+  }
+  to {
+    display: none;
+    filter: opacity(0);
+    z-index: -1;
+  }
+}

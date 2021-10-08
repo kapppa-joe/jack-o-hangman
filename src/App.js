@@ -2,14 +2,18 @@ import "./App.css";
 
 import { useState } from "react";
 
-import Header from "./header";
-import Category from "./category";
-import Guess from "./guess";
-import Score from "./score";
-import Lives from "./lives";
+import Header from "./components/Header";
+// import Category from "./components/category";
+import WordHints from "./components/WordHints";
+import Guess from "./components/Guess";
+import Score from "./components/Score";
+import Lives from "./components/Lives";
+import { chooseWord } from "./utils";
 
 function App() {
-  const [wordToGuess, setWordToGuess] = useState("");
+  const { category, word } = chooseWord();
+  const [wordToGuess, setWordToGuess] = useState(word);
+  const [categoryChosen, setCategory] = useState(category);
   const [lettersGuessed, setLettersGuessed] = useState([]);
 
   const maxLives = 6;
@@ -31,11 +35,16 @@ function App() {
   return (
     <div className="App">
       <Header resetGame={resetGame} />
-      <Category
-        setWordToGuess={setWordToGuess}
+      <WordHints
         wordToGuess={wordToGuess}
+        categoryChosen={categoryChosen}
         lettersGuessed={lettersGuessed}
       />
+      {/* <Category */}
+      {/* setWordToGuess={setWordToGuess} */}
+      {/* wordToGuess={wordToGuess} */}
+      {/* lettersGuessed={lettersGuessed} */}
+      {/* /> */}
       <Guess
         setLettersGuessed={setLettersGuessed}
         lettersGuessed={lettersGuessed}
