@@ -1,9 +1,6 @@
 import { useState } from "react";
 
-const Guess = (props) => {
-  const { gameSession } = props;
-  const { lettersGuessed, setLettersGuessed } = gameSession;
-
+const Guess = ({ lettersGuessed, setLettersGuessed }) => {
   const [letter, setLetter] = useState("");
 
   const handleSubmit = (e) => {
@@ -16,6 +13,7 @@ const Guess = (props) => {
     setLettersGuessed((currLettersGuessed) => {
       return [...currLettersGuessed, letter];
     });
+    setLetter("");
   };
 
   return (
@@ -32,6 +30,7 @@ const Guess = (props) => {
         <button type="submit">Enter</button>
         <br />
       </form>
+      <br />
       <span>
         Letters Used : {lettersGuessed.map((letter) => ` ${letter} `)}
       </span>

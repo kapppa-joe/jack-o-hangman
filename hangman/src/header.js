@@ -1,7 +1,10 @@
-const Header = () => {
+const Header = ({ resetGame }) => {
   return (
     <div id="header">
-      <h1>Hangman</h1>;<button type="submit">Reset</button>
+      <h1 class="title">Hangman</h1>
+      <button class="reset" type="submit" onClick={resetGame}>
+        Reset
+      </button>
     </div>
   );
 };

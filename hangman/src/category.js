@@ -1,7 +1,4 @@
-const Category = (props) => {
-  const { gameSession } = props;
-  const { setWordToGuess, wordToGuess, lettersGuessed } = gameSession;
-
+const Category = ({ setWordToGuess, wordToGuess, lettersGuessed }) => {
   const colours = ["blue", "red", "green"];
   const animals = ["cat", "dog", "lion"];
 
@@ -22,23 +19,30 @@ const Category = (props) => {
 
   return (
     <div id="category">
-      <label htmlFor="categories">category</label>
-      <select id="categories" onChange={handleChange}>
-        <option value="animals">Animals</option>
-        <option value="colours">Colours</option>
-      </select>
-      <br />
-
-      <label htmlFor="guessedWord">Word</label>
-      <span id="guessedWord">
-        {wordToGuess.split("").map((letter) => {
-          if (lettersGuessed.includes(letter)) {
-            return letter;
-          } else {
-            return " _ ";
-          }
-        })}
-      </span>
+      <section class="select">
+        <label class="label" htmlFor="categories">
+          Category
+        </label>
+        <select id="categories" onChange={handleChange}>
+          <option value="animals">Animals</option>
+          <option value="colours">Colours</option>
+        </select>
+        <br />
+      </section>
+      <section class="guessedWord">
+        <label class="label" htmlFor="guessedWord">
+          Word
+        </label>
+        <span class="span" id="guessedWord">
+          {wordToGuess.split("").map((letter) => {
+            if (lettersGuessed.includes(letter)) {
+              return letter;
+            } else {
+              return " _ ";
+            }
+          })}
+        </span>
+      </section>
     </div>
   );
 };

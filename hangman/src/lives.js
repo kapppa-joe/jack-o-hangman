@@ -1,8 +1,9 @@
-const Lives = () => {
+const Lives = ({ livesRemain }) => {
   return (
     <div id="lives">
-      <span>Lives:6</span>
-      <img src="../hangman.svg" alt="" />;
+      <span>Lives:{livesRemain}</span>
+      <br />
+      <img src="../hangman.svg" alt="" />
     </div>
   );
 };

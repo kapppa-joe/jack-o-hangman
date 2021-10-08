@@ -9,47 +9,43 @@ import Score from "./score";
 import Lives from "./lives";
 
 function App() {
-  const initialGame = {
-    lives: 6,
-    wordToGuess: "",
-    lettersGuessed: [],
-  };
+  const [wordToGuess, setWordToGuess] = useState("");
+  const [lettersGuessed, setLettersGuessed] = useState([]);
 
-  const [gameSession, setGameSession] = useState(initialGame);
-
-  // const [wordToGuess, setWordToGuess] = useState("");
-  // const [lettersGuessed, setLettersGuessed] = useState([]);
-
-  // const maxLives = 6;
-  // let livesRemain = maxLives;
-  for (const letter of gameSession.lettersGuessed) {
-    if (!gameSession.wordToGuess.includes(letter)) {
-      gameSession.lives -= 1;
+  const maxLives = 6;
+  let livesRemain = maxLives;
+  for (const letter of lettersGuessed) {
+    if (!wordToGuess.includes(letter)) {
+      livesRemain -= 1;
+      if (livesRemain === 0) {
+        livesRemain = "GAME OVER";
+      }
     }
   }
-  console.log("lives remains: ", gameSession.livesRemain);
 
-  const resetGame = () => {};
+  const resetGame = () => {
+    setWordToGuess("");
+    setLettersGuessed([]);
+  };
 
   return (
     <div className="App">
-      <Header />
+      <Header resetGame={resetGame} />
       <Category
-        // setWordToGuess={setWordToGuess}
-        // wordToGuess={wordToGuess}
-        // lettersGuessed={lettersGuessed}
-        gameSession={gameSession}
+        setWordToGuess={setWordToGuess}
+        wordToGuess={wordToGuess}
+        lettersGuessed={lettersGuessed}
       />
       <Guess
-        // setLettersGuessed={setLettersGuessed}
-        // lettersGuessed={lettersGuessed}
-        gameSession={gameSession}
+        setLettersGuessed={setLettersGuessed}
+        lettersGuessed={lettersGuessed}
       />
-      <Score />
-      <Lives
-        // livesRemain={livesRemain}
-        gameSession={gameSession}
+      <Score
+        lettersGuessed={lettersGuessed}
+        wordToGuess={wordToGuess}
+        resetGame={resetGame}
       />
+      <Lives livesRemain={livesRemain} />
     </div>
   );
 }
