@@ -1,8 +1,10 @@
 const LetterButton = (props) => {
-  const { letter, onClick, correctGuess, wrongGuess } = props;
+  const { letter, onClick, correctGuess, wrongGuess, gameOver } = props;
 
   let classesToApply = ["letter-button"];
-  if (correctGuess) {
+  if (gameOver) {
+    classesToApply.push("wrong-guess");
+  } else if (correctGuess) {
     classesToApply.push("correct-guess");
   } else if (wrongGuess) {
     classesToApply.push("wrong-guess");

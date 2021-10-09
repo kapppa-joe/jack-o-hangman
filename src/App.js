@@ -25,6 +25,7 @@ function App() {
 
   const maxLives = 6;
   const livesRemain = Math.max(maxLives - wrongGuess.length, 0);
+  const gameOver = livesRemain === 0;
 
   return (
     <div className="App">
@@ -38,7 +39,7 @@ function App() {
         setLettersGuessed={setLettersGuessed}
         correctGuess={correctGuess}
         wrongGuess={wrongGuess}
-        livesRemain={livesRemain}
+        gameOver={gameOver}
       />
       <Lives maxLives={maxLives} livesRemain={livesRemain} />
     </div>
