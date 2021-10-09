@@ -2,7 +2,12 @@ import { useState } from "react";
 
 import LetterButton from "./LetterButton";
 
-const Guess = ({ correctGuess, wrongGuess, setLettersGuessed }) => {
+const Guess = ({
+  correctGuess,
+  wrongGuess,
+  setLettersGuessed,
+  livesRemain,
+}) => {
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
 
   const chooseLetter = (letter) => {
@@ -19,7 +24,7 @@ const Guess = ({ correctGuess, wrongGuess, setLettersGuessed }) => {
             correctGuess={correctGuess.includes(letter)}
             wrongGuess={wrongGuess.includes(letter)}
             letter={letter}
-            onClick={() => chooseLetter(letter)}
+            onClick={livesRemain > 0 ? () => chooseLetter(letter) : null}
           />
         ))}
       </div>

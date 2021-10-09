@@ -38,8 +38,9 @@ function App() {
         setLettersGuessed={setLettersGuessed}
         correctGuess={correctGuess}
         wrongGuess={wrongGuess}
+        livesRemain={livesRemain}
       />
-      <Lives livesRemain={livesRemain} />
+      <Lives maxLives={maxLives} livesRemain={livesRemain} />
     </div>
   );
 }

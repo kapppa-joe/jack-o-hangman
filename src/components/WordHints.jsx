@@ -7,9 +7,9 @@ const WordHints = ({ wordToGuess, categoryChosen, lettersGuessed }) => {
       <span id="guessedWord">
         {wordToGuess.split("").map((letter) => {
           if (lettersGuessed.includes(letter)) {
-            return letter;
+            return `${letter}`;
           } else {
-            return " _ ";
+            return "_";
           }
         })}
       </span>
