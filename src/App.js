@@ -3,12 +3,10 @@ import "./App.css";
 import { useState } from "react";
 
 import Header from "./components/Header";
-// import Category from "./components/category";
 import WordHints from "./components/WordHints";
 import Guess from "./components/Guess";
-import Score from "./components/Score";
 import Lives from "./components/Lives";
-import { chooseWord } from "./utils";
+import { chooseWord, judgeGuess } from "./utils";
 
 function App() {
   const { category, word } = chooseWord();
@@ -23,16 +21,10 @@ function App() {
     setLettersGuessed([]);
   };
 
+  const { correctGuess, wrongGuess } = judgeGuess(lettersGuessed, wordToGuess);
+
   const maxLives = 6;
-  let livesRemain = maxLives;
-  for (const letter of lettersGuessed) {
-    if (!wordToGuess.includes(letter)) {
-      livesRemain -= 1;
-      if (livesRemain === 0) {
-        livesRemain = "GAME OVER";
-      }
-    }
-  }
+  const livesRemain = Math.max(maxLives - wrongGuess.length, 0);
 
   return (
     <div className="App">
@@ -42,19 +34,10 @@ function App() {
         categoryChosen={categoryChosen}
         lettersGuessed={lettersGuessed}
       />
-      {/* <Category */}
-      {/* setWordToGuess={setWordToGuess} */}
-      {/* wordToGuess={wordToGuess} */}
-      {/* lettersGuessed={lettersGuessed} */}
-      {/* /> */}
       <Guess
         setLettersGuessed={setLettersGuessed}
-        lettersGuessed={lettersGuessed}
-      />
-      <Score
-        lettersGuessed={lettersGuessed}
-        wordToGuess={wordToGuess}
-        resetGame={resetGame}
+        correctGuess={correctGuess}
+        wrongGuess={wrongGuess}
       />
       <Lives livesRemain={livesRemain} />
     </div>
