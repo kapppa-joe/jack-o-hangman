@@ -1,39 +1,28 @@
 import { useState } from "react";
 
-const Guess = ({ lettersGuessed, setLettersGuessed }) => {
-  const [letter, setLetter] = useState("");
+import LetterButton from "./LetterButton";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+const Guess = ({ correctGuess, wrongGuess, setLettersGuessed }) => {
+  const letters = "abcdefghijklmnopqrstuvwxyz".split("");
 
-    if (lettersGuessed.includes(letter)) {
-      return;
-    }
-
-    setLettersGuessed((currLettersGuessed) => {
-      return [...currLettersGuessed, letter];
+  const chooseLetter = (letter) => {
+    setLettersGuessed((prevState) => {
+      return [...prevState, letter];
     });
-    setLetter("");
   };
 
   return (
     <div id="guess">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="guessedLetter">Letter</label>
-        <input
-          type="text"
-          required
-          maxLength="1"
-          value={letter}
-          onChange={(e) => setLetter(e.target.value)}
-        ></input>
-        <button type="submit">Enter</button>
-        <br />
-      </form>
-      <br />
-      <span>
-        Letters Used : {lettersGuessed.map((letter) => ` ${letter} `)}
-      </span>
+      <div id="keyboard">
+        {letters.map((letter) => (
+          <LetterButton
+            correctGuess={correctGuess.includes(letter)}
+            wrongGuess={wrongGuess.includes(letter)}
+            letter={letter}
+            onClick={() => chooseLetter(letter)}
+          />
+        ))}
+      </div>
     </div>
   );
 };

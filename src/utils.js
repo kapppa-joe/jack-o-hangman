@@ -22,3 +22,15 @@ function randomInt(num) {
   // generate an random int i with 0 <= i < n;
   return Math.floor(Math.random() * num);
 }
+
+export function judgeGuess(lettersGuessed, wordToGuess) {
+  const [correctGuess, wrongGuess] = [[], []];
+  for (const letter of lettersGuessed) {
+    if (wordToGuess.includes(letter)) {
+      correctGuess.push(letter);
+    } else {
+      wrongGuess.push(letter);
+    }
+  }
+  return { correctGuess, wrongGuess };
+}
