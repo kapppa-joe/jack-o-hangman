@@ -13,7 +13,7 @@ const hangmanPartsNames = {
 };
 const hangmanStyle = (lives) => {
   if (lives === 0) {
-    return { fill: "#000", "--background": "#F00" };
+    return { fill: "#F00", "--background": "transparent" };
   }
 
   let style = { fill: "transparent" };
