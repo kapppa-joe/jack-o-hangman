@@ -1,7 +1,7 @@
 const Header = ({ resetGame }) => {
   return (
     <div id="header">
-      <h1 class="title">Hangman</h1>
+      <h1 class="game-title">Hangman</h1>
       <button class="reset-button" onClick={resetGame}>
         Reset
       </button>
