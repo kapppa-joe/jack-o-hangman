@@ -78,14 +78,14 @@
 
   display: flex;
   flex-direction: column;
-  /* grid-template-areas: "textover"; */
   align-items: center;
 
   cursor: pointer;
 }
 
 #header .reset-button-svg {
-  /* grid-area: textover; */
+  fill: #333;
+  stroke: #ccc;
   transition: translate 0.5s ease-out;
   translate: 0 -1em;
 }
