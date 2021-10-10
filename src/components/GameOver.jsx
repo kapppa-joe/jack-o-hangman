@@ -1,6 +1,6 @@
 import splatter from "../assets/image/bloody-splatter-0.png";
 
-const BloodEffect = () => {
+const GameOver = () => {
   return (
     <div>
       <div
@@ -17,4 +17,4 @@ const BloodEffect = () => {
   );
 };
 
-export default BloodEffect;
+export default GameOver;

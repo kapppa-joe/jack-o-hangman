@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import WordHints from "./components/WordHints";
 import Guess from "./components/Guess";
 import Lives from "./components/Lives";
-import BloodEffect from "./components/BloodEffect";
+import GameOver from "./components/GameOver";
 
 import { chooseWord, judgeGuess } from "./utils";
 
@@ -17,19 +17,20 @@ function App() {
   const [categoryChosen, setCategory] = useState(category);
   const [lettersGuessed, setLettersGuessed] = useState([]);
   const [jumpScareClass, setJumpScareClass] = useState([]);
+  const [isGameOver, setGameOver] = useState(false);
 
   const resetGame = () => {
     const { category, word } = chooseWord();
     setWordToGuess(word);
     setCategory(category);
     setLettersGuessed([]);
+    setGameOver(false);
   };
 
   const { correctGuess, wrongGuess } = judgeGuess(lettersGuessed, wordToGuess);
 
   const maxLives = 6;
   const livesRemain = Math.max(maxLives - wrongGuess.length, 0);
-  const gameOver = livesRemain === 0;
 
   useEffect(() => {
     if (livesRemain === 6) {
@@ -47,6 +48,7 @@ function App() {
       );
     } else if (livesRemain === 0) {
       setJumpScareClass([]);
+      setGameOver(true);
       // setTimeout(setJumpScareClass(["red-flash", "glitch"]), 1000);
     }
   }, [livesRemain]);
@@ -63,11 +65,10 @@ function App() {
         setLettersGuessed={setLettersGuessed}
         correctGuess={correctGuess}
         wrongGuess={wrongGuess}
-        gameOver={gameOver}
+        usGameOver={isGameOver}
       />
       <Lives maxLives={maxLives} livesRemain={livesRemain} />
-      {livesRemain === 0 ? <BloodEffect /> : null}
-      {/* <BloodEffect /> */}
+      {isGameOver ? <GameOver /> : null}
     </div>
   );
 }

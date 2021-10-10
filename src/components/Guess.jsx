@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import LetterButton from "./LetterButton";
 
-const Guess = ({ correctGuess, wrongGuess, setLettersGuessed, gameOver }) => {
+const Guess = ({ correctGuess, wrongGuess, setLettersGuessed, isGameOver }) => {
   const letters = "abcdefghijklmnopqrstuvwxyz".split("");
 
   const chooseLetter = (letter) => {
@@ -16,7 +16,7 @@ const Guess = ({ correctGuess, wrongGuess, setLettersGuessed, gameOver }) => {
       <div id="keyboard">
         {letters.map((letter) => (
           <LetterButton
-            gameOver={gameOver}
+            isGameOver={isGameOver}
             correctGuess={correctGuess.includes(letter)}
             wrongGuess={wrongGuess.includes(letter)}
             letter={letter}

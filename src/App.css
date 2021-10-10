@@ -70,7 +70,13 @@
   background-image: -webkit-linear-gradient(0deg, #f00 0%, #700 30%, #fff);
 }
 
+/* 
+    reset button and related animations
+ */
+
 #header .reset-button {
+  z-index: 3;
+
   position: fixed;
   right: 10px;
   top: 0px;
@@ -91,7 +97,6 @@
 }
 
 .reset-button-text {
-  z-index: 2;
   align-self: center;
   opacity: 0;
   grid-area: textover;
@@ -130,7 +135,7 @@
   width: 100vw;
   height: 500vh;
   background: rgba(0, 0, 0, 75%);
-  z-index: 2;
+  z-index: 3;
 
   display: flex;
   align-items: flex-end;
