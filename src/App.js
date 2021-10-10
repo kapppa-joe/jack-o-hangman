@@ -6,6 +6,8 @@ import Header from "./components/Header";
 import WordHints from "./components/WordHints";
 import Guess from "./components/Guess";
 import Lives from "./components/Lives";
+import BloodEffect from "./components/BloodEffect";
+
 import { chooseWord, judgeGuess } from "./utils";
 
 function App() {
@@ -64,6 +66,8 @@ function App() {
         gameOver={gameOver}
       />
       <Lives maxLives={maxLives} livesRemain={livesRemain} />
+      {livesRemain === 0 ? <BloodEffect /> : null}
+      {/* <BloodEffect /> */}
     </div>
   );
 }

@@ -1,22 +1,18 @@
-import splatter0 from "../assets/image/bloody-splatter-0.png";
-import splatter1 from "../assets/image/bloody-splatter-1.svg";
-import splatter2 from "../assets/image/bloody-splatter-2.svg";
+import splatter from "../assets/image/bloody-splatter-0.png";
 
 const BloodEffect = () => {
   return (
     <div>
       <div
-        className="overlay blood-effect show"
-        style={{ backgroundImage: `url(${splatter0})` }}
+        className="overlay blood-effect gameover non-clickable"
+        style={{
+          backgroundColor: "rgba(255, 0, 0, 1)",
+          backgroundImage: `url(${splatter})`,
+        }}
       ></div>
-      <div
-        className="overlay blood-effect show delay1"
-        style={{ backgroundImage: `url(${splatter1})` }}
-      ></div>
-      <div
-        className="overlay blood-effect show delay2"
-        style={{ backgroundImage: `url(${splatter2})` }}
-      ></div>
+      <div className="overlay gameover-message non-clickable">
+        You are Hanged.
+      </div>
     </div>
   );
 };
