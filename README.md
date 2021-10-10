@@ -3,6 +3,10 @@
 Image for blood splatter effect:
 https://www.freeiconspng.com/img/44471
 
+Graphic for noose (used in reset button)
+https://thenounproject.com/search/?q=noose&i=1987506
+Noose by Kaleo from the Noun Project
+
 <!-- default README to remove later -->
 
 # Getting Started with Create React App
