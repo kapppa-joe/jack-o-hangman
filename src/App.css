@@ -83,14 +83,14 @@
   cursor: pointer;
 }
 
-#header .reset-button-svg {
+.reset-button-svg {
   fill: #333;
   stroke: #ccc;
   transition: translate 0.5s ease-out;
   translate: 0 -1em;
 }
 
-#header .reset-button-text {
+.reset-button-text {
   z-index: 2;
   align-self: center;
   opacity: 0;
@@ -100,12 +100,82 @@
   padding-bottom: 1em;
 }
 
-#header .reset-button:hover > .reset-button-text {
+.reset-button:hover > .reset-button-text {
   opacity: 1;
 }
 
-#header .reset-button:hover > .reset-button-svg {
+.reset-button:hover
+  > .reset-button-svg:not(.noose-retract-exit, .noose-retract-exit-active, .noose-retract-exit-done) {
+  fill: #f00;
+  stroke: #ccc;
   translate: none;
+}
+
+.noose-retract-exit {
+  translate: none;
+  transition: translate 0.5s;
+}
+
+.noose-retract-exit-active {
+  translate: 0 -6em;
+}
+
+.noose-retract-exit-done {
+  translate: 0 -6em;
+}
+
+.reset-splash {
+  position: fixed;
+  bottom: calc(0px + 100vh);
+  width: 100vw;
+  height: 500vh;
+  background: rgba(0, 0, 0, 75%);
+  z-index: 2;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.reset-splash.drop-noose-enter {
+  bottom: calc(0px + 100vh);
+  animation: reset-splash 1s ease-in;
+  animation-play-state: paused;
+}
+
+.reset-splash.drop-noose-enter-active {
+  animation-play-state: running;
+}
+
+.large-noose {
+  fill: #000;
+  stroke: #f00;
+  width: min(60vw, 70vh);
+  margin-bottom: 50vh;
+}
+
+@keyframes reset-splash {
+  0% {
+    bottom: calc(0px + 100vh);
+  }
+  25% {
+    bottom: 0px;
+  }
+  75% {
+    bottom: 0px;
+  }
+  100% {
+    bottom: calc(0px + 100vh);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .large-noose {
+    fill: #000;
+    stroke: #f00;
+    width: min(60vw, 70vh);
+    margin-bottom: 10vh;
+  }
 }
 
 /* 
@@ -287,7 +357,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  /* z-index: 2; */
+  z-index: 2;
 }
 
 .non-clickable {
