@@ -42,7 +42,9 @@ const Lives = ({ livesRemain, maxLives }) => {
           })}
       </span>
       <br />
+
       <Hangman style={hangmanStyle(livesRemain)} />
+
       {livesRemain === 0 ? <BloodEffect /> : null}
     </div>
   );

@@ -4,10 +4,20 @@ import splatter2 from "../assets/image/bloody-splatter-2.svg";
 
 const BloodEffect = () => {
   return (
-    <div
-      className="blood-effect show"
-      style={{ backgroundImage: `url(${splatter2})` }}
-    ></div>
+    <div>
+      <div
+        className="overlay blood-effect show"
+        style={{ backgroundImage: `url(${splatter0})` }}
+      ></div>
+      <div
+        className="overlay blood-effect show delay1"
+        style={{ backgroundImage: `url(${splatter1})` }}
+      ></div>
+      <div
+        className="overlay blood-effect show delay2"
+        style={{ backgroundImage: `url(${splatter2})` }}
+      ></div>
+    </div>
   );
 };
 

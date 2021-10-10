@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Header from "./components/Header";
 import WordHints from "./components/WordHints";
@@ -10,9 +10,11 @@ import { chooseWord, judgeGuess } from "./utils";
 
 function App() {
   const { category, word } = chooseWord();
+
   const [wordToGuess, setWordToGuess] = useState(word);
   const [categoryChosen, setCategory] = useState(category);
   const [lettersGuessed, setLettersGuessed] = useState([]);
+  const [jumpScareClass, setJumpScareClass] = useState([]);
 
   const resetGame = () => {
     const { category, word } = chooseWord();
@@ -27,8 +29,28 @@ function App() {
   const livesRemain = Math.max(maxLives - wrongGuess.length, 0);
   const gameOver = livesRemain === 0;
 
+  useEffect(() => {
+    if (livesRemain === 6) {
+      setJumpScareClass([]);
+    } else if (livesRemain === 4) {
+      // randomize jumpScare timing.
+      setTimeout(
+        () => setJumpScareClass((prev) => [...prev, "red-flash"]),
+        Math.random() * 5000
+      );
+    } else if (livesRemain === 2) {
+      setTimeout(
+        () => setJumpScareClass((prev) => [...prev, "glitch"]),
+        Math.random * 3000
+      );
+    } else if (livesRemain === 0) {
+      setJumpScareClass([]);
+      // setTimeout(setJumpScareClass(["red-flash", "glitch"]), 1000);
+    }
+  }, [livesRemain]);
+
   return (
-    <div className="App">
+    <div className={`App ${jumpScareClass.join(" ")}`}>
       <Header resetGame={resetGame} />
       <WordHints
         wordToGuess={wordToGuess}
