@@ -86,7 +86,7 @@
 .reset-button-svg {
   fill: #333;
   stroke: #ccc;
-  transition: translate 0.5s ease-out;
+  transition: all 0.5s ease-out;
   translate: 0 -1em;
 }
 
@@ -106,8 +106,8 @@
 
 .reset-button:hover
   > .reset-button-svg:not(.noose-retract-exit, .noose-retract-exit-active, .noose-retract-exit-done) {
-  fill: #f00;
-  stroke: #ccc;
+  fill: #000;
+  stroke: #f00;
   translate: none;
 }
 

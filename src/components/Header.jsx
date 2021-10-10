@@ -35,10 +35,12 @@ const Header = ({ resetGame }) => {
         in={showResetSplash}
         appear={false}
         onEnter={() => {
-          setPerformReset(false);
           setTimeout(() => setShowResetSplash(false), 1000);
         }}
-        onExit={resetGame}
+        onExit={() => {
+          setPerformReset(false);
+          resetGame();
+        }}
       >
         <div className="reset-splash">
           <LargeNoose className="large-noose" />
