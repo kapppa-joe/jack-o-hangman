@@ -3,9 +3,14 @@
 Image for blood splatter effect:
 https://www.freeiconspng.com/img/44471
 
-Graphic for noose (used in reset button)
+Graphic for noose (used in reset button):
 https://thenounproject.com/search/?q=noose&i=1987506
 Noose by Kaleo from the Noun Project
+
+Graphic for spider web:
+Image by <a href="https://pixabay.com/users/clker-free-vector-images-3736/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=311050">Clker-Free-Vector-Images</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=311050">Pixabay</a>
+
+https://pixabay.com/vectors/death-grim-reaper-reaper-scythe-2024663/
 
 <!-- default README to remove later -->
 

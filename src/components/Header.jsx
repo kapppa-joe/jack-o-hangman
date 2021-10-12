@@ -2,7 +2,8 @@ import { CSSTransition } from "react-transition-group";
 import { useState } from "react";
 
 import { ReactComponent as NooseSvg } from "../assets/image/noose.svg";
-import { ReactComponent as LargeNoose } from "../assets/image/large-noose.svg";
+// import { ReactComponent as LargeNoose } from "../assets/image/large-noose.svg";
+import { ReactComponent as JackoLantern } from "../assets/image/jack-o-lantern.svg";
 
 const Header = ({ resetGame }) => {
   const [performReset, setPerformReset] = useState(false);
@@ -14,7 +15,7 @@ const Header = ({ resetGame }) => {
 
   return (
     <div id="header">
-      <h1 className="game-title">Hangman</h1>
+      <h1 className="game-title">hangman</h1>
       <span className="reset-button" role="button" onClick={pressReset}>
         <CSSTransition
           classNames="noose-retract"
@@ -39,11 +40,11 @@ const Header = ({ resetGame }) => {
         }}
         onExit={() => {
           setPerformReset(false);
-          resetGame();
+          resetGame({ keepScore: false });
         }}
       >
         <div className="reset-splash">
-          <LargeNoose className="large-noose" />
+          <JackoLantern className="reset-splash-graphic" />
         </div>
       </CSSTransition>
     </div>

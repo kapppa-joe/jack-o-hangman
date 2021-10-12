@@ -1,6 +1,5 @@
 import { ReactComponent as Hangman } from "../assets/image/hangman.svg";
 
-import BloodEffect from "./GameOver";
 import Heart from "./Heart";
 
 const hangmanPartsNames = {

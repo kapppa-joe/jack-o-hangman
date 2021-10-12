@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import LetterButton from "./LetterButton";
 
 const Guess = ({ correctGuess, wrongGuess, setLettersGuessed, isGameOver }) => {

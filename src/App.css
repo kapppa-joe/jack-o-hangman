@@ -42,10 +42,17 @@
 
 #word-hints,
 #guess,
-#score,
+#display-score,
 #lives {
   /* border: solid 1px green; */
   padding: var(--spacing);
+}
+
+#display-score {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  color: #d4d4d4;
 }
 
 #header {
@@ -53,21 +60,23 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: black;
+  background-color: #000;
 }
 
 #header .game-title {
   display: inline;
   width: auto;
   align-self: center;
-  background-color: #eee;
+  padding-bottom: 0.2em;
+
+  background-color: #d4d4d4;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: all 1s ease;
 }
 
-#header .game-title.blood {
-  background-image: -webkit-linear-gradient(0deg, #f00 0%, #700 30%, #fff);
+.jump-scare-stage-1 #header .game-title {
+  background-image: -webkit-linear-gradient(0deg, #f00 0%, #700 70%, #400);
 }
 
 /* 
@@ -94,6 +103,8 @@
   stroke: #ccc;
   transition: all 0.5s ease-out;
   translate: 0 -1em;
+
+  filter: drop-shadow(0 0 3px #ccc);
 }
 
 .reset-button-text {
@@ -131,7 +142,7 @@
 
 .reset-splash {
   position: fixed;
-  bottom: calc(0px + 100vh);
+  bottom: calc(100px + 100vh);
   width: 100vw;
   height: 500vh;
   background: rgba(0, 0, 0, 75%);
@@ -152,11 +163,12 @@
   animation-play-state: running;
 }
 
-.large-noose {
+.reset-splash-graphic {
   fill: #000;
-  stroke: #f00;
   width: min(60vw, 70vh);
   margin-bottom: 50vh;
+
+  filter: drop-shadow(0px 0px 20px #ffa500);
 }
 
 @keyframes reset-splash {
@@ -175,7 +187,7 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .large-noose {
+  .reset-splash-graphic {
     fill: #000;
     stroke: #f00;
     width: min(60vw, 70vh);
@@ -381,7 +393,7 @@
 
 .blood-effect.gameover {
   opacity: 1;
-  animation: blood-effect-gameover 4s linear forwards;
+  animation: blood-effect-gameover 3s linear forwards;
 }
 
 @keyframes blood-effect-gameover {
@@ -406,7 +418,7 @@
   align-items: center;
   font-size: 3em;
 
-  animation: gameover-message 3s ease-out 3s 1 forwards;
+  animation: gameover-message 2s ease-out 2s 1 forwards;
 }
 
 @keyframes gameover-message {
@@ -418,11 +430,11 @@
   }
 }
 
-.red-flash div:not(.overlay) {
+.jump-scare-stage-1 div:not(.overlay) {
   animation: red-flash 0.5s ease 1 !important;
 }
 
-div.red-flash .letter-button {
+div.jump-scare-stage-1 .letter-button {
   color: #f00 !important;
 }
 
@@ -455,7 +467,7 @@ div.red-flash .letter-button {
   }
 }
 
-.glitch {
+.jump-scare-stage-2 {
   animation: glitch 0.2s ease 1 !important;
 }
 
