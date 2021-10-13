@@ -15,7 +15,12 @@ const Header = ({ resetGame }) => {
 
   return (
     <div id="header">
-      <h1 className="game-title">hangman</h1>
+      <h1 className="game-title">
+        <span className="pumpkin">　</span>
+        <span className="header-text">hang-o-lantern</span>
+        <span className="pumpkin">　</span>
+      </h1>
+
       <span className="reset-button" role="button" onClick={pressReset}>
         <CSSTransition
           classNames="noose-retract"

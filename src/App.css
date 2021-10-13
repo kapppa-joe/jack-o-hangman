@@ -2,13 +2,18 @@
   font-family: "Virgil";
   src: local("Virgil"), url(./assets/fonts/Virgil.woff2) format("woff2");
 }
-
+/* 
 :root {
   --spacing: 6px;
   font-size: 20px;
   --red-heart-colour: #fa5252;
   --hearts-init-opacity: 0;
   --hearts-init-animation-delay: 0;
+
+  --header-text-colour: #333;
+  --header-bg-colour: #ffa500;
+  --body-text-colour: #333;
+  --body-bg-colour: #f0f0f0d0;
 }
 
 @media only screen and (min-width: 576px) {
@@ -23,27 +28,110 @@
     --spacing: 12px;
     font-size: 32px;
   }
-}
+} */
 
 .App {
   font-family: "Virgil", cursive;
   text-align: center;
+
   display: grid;
   height: 100vh;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 6em 5em;
+  grid-template-rows: 6em auto;
   grid-template-areas:
-    "header header"
-    "word-hints word-hints"
-    "guess lives";
-  background-color: #d4d4d4;
+    "header"
+    "main";
+
   overflow-y: hidden;
+  background: url("./assets/image/pumpkin-background.svg");
+  animation: bg-scrolling-reverse 1000s linear infinite both;
+}
+
+@keyframes bg-scrolling-reverse {
+  100% {
+    background-position: -10000px -10000px;
+  }
+}
+
+/* responsive sizing */
+
+.App {
+  --spacing: 6px;
+  font-size: 20px;
+}
+
+@media only screen and (min-width: 576px) {
+  .App {
+    --spacing: 8px;
+    font-size: 28px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .App {
+    --spacing: 12px;
+    font-size: 32px;
+  }
+}
+
+/* color theme (for jump scare purpose! :D) */
+
+.App {
+  --red-heart-colour: #fa5252;
+  --hearts-init-opacity: 0;
+  --hearts-init-animation-delay: 0;
+
+  --header-text-colour: #333;
+  --header-bg-colour: #ffa500;
+  --body-text-colour: #333;
+  --body-bg-colour: #f0f0f0d0;
+}
+
+.App.jump-scare-stage-1 {
+  --header-text-colour: #fa5252;
+  --header-bg-colour: #333;
+  --body-text-colour: #ccc;
+}
+
+#main {
+  grid-area: main;
+
+  display: grid;
+  overflow-y: hidden;
+
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 6em 1fr 1fr;
+
+  grid-template-areas:
+    "word-hints word-hints lives"
+    "hangman hangman hangman"
+    "guess guess guess";
+
+  background: #f0f0f0d0;
+}
+
+main::before {
+  content: "";
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  #main {
+    grid-template-columns: 3fr 3fr 4fr;
+    grid-template-rows: min-content auto;
+    grid-template-areas:
+      "word-hints word-hints lives"
+      "guess guess hangman";
+  }
 }
 
 #word-hints,
 #guess,
-#display-score,
-#lives {
+#lives,
+#hangman {
   /* border: solid 1px green; */
   padding: var(--spacing);
 }
@@ -52,27 +140,56 @@
   position: fixed;
   top: 1em;
   left: 1em;
-  color: #d4d4d4;
+  color: var(--header-text-colour);
 }
 
 #header {
   grid-area: header;
+
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: #000;
+  flex-direction: row;
+  align-content: center;
+  width: 100vw;
+
+  background: #ffa500;
+  color: #333;
+  /* background-color: #000; */
 }
 
 #header .game-title {
-  display: inline;
-  width: auto;
-  align-self: center;
-  padding-bottom: 0.2em;
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
 
-  background-color: #d4d4d4;
+  position: relative;
+  top: 0.5em;
+
+  justify-content: center;
+  align-items: center;
+
+  padding-bottom: 0.2em;
+  white-space: nowrap;
+  font-size: 1.5em;
+
+  /* background-color: #d4d4d4;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: all 1s ease;
+  -webkit-text-fill-color: transparent; */
+}
+
+@media only screen and (min-width: 768px) {
+  #header .game-title {
+    font-size: 2em;
+  }
+}
+
+#header .pumpkin {
+  min-width: 1em;
+  background-image: url("./assets/image/jack-o-lantern.svg");
+  background-repeat: no-repeat;
+}
+#header .header-text {
+  max-width: 60vw;
+  flex: 1 1 0;
 }
 
 .jump-scare-stage-1 #header .game-title {
@@ -144,12 +261,12 @@
   position: fixed;
   bottom: calc(100px + 100vh);
   width: 100vw;
-  height: 500vh;
+  height: 100vh;
   background: rgba(0, 0, 0, 75%);
   z-index: 3;
 
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
 }
 
@@ -165,8 +282,7 @@
 
 .reset-splash-graphic {
   fill: #000;
-  width: min(60vw, 70vh);
-  margin-bottom: 50vh;
+  width: min(70vw, 80vh);
 
   filter: drop-shadow(0px 0px 20px #ffa500);
 }
@@ -201,8 +317,10 @@
  */
 
 #guess {
-  display: flex;
   grid-area: guess;
+
+  display: flex;
+  align-items: center;
 }
 
 #keyboard {
@@ -211,11 +329,15 @@
   flex-wrap: wrap;
   align-content: flex-start;
   justify-content: center;
+
+  border-radius: 3em;
+  background: #ffa50030;
+  padding: calc(var(--spacing));
 }
 
 @media only screen and (min-width: 768px) {
   #keyboard {
-    padding: calc(var(--spacing) * 2);
+    margin: calc(var(--spacing));
   }
 }
 
@@ -341,9 +463,13 @@
   }
 }
 
-#lives {
-  grid-area: lives;
-  /* font-weight: bold; */
+#hangman {
+  grid-area: hangman;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #word-hints {
@@ -351,7 +477,25 @@
 
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 2em;
+}
+
+#hints,
+#word-to-guess {
+  display: grid;
   grid-template-rows: 1fr 1fr;
+}
+
+@media only screen and (min-width: 576px) {
+  #word-hints {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  #hints,
+  #word-to-guess #hearts {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+  }
 }
 
 #guessedWord {
@@ -361,6 +505,32 @@
 #word-hints #category {
   color: #f00;
 }
+
+#lives {
+  grid-area: lives;
+
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+#hearts {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 0.2em;
+}
+
+/* #lives {
+  grid-area: lives;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+
+  justify-items: center;
+}
+
+#hearts {
+  grid-area: hearts;
+} */
 
 /*  
  *           Jump scare effects related

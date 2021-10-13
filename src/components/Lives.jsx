@@ -1,35 +1,12 @@
-import { ReactComponent as Hangman } from "../assets/image/hangman.svg";
+// import { ReactComponent as HangmanSvg } from "../assets/image/hangman.svg";
 
 import Heart from "./Heart";
-
-const hangmanPartsNames = {
-  6: "--hangman-head-colour",
-  5: "--hangman-body-colour",
-  4: "--hangman-leftarm-colour",
-  3: "--hangman-rightarm-colour",
-  2: "--hangman-leftleg-colour",
-  1: "--hangman-rightleg-colour",
-};
-const hangmanStyle = (lives) => {
-  if (lives === 0) {
-    return { fill: "#F00", "--background": "transparent" };
-  }
-
-  let style = { fill: "transparent" };
-  for (const [num, partName] of Object.entries(hangmanPartsNames)) {
-    if (lives < parseInt(num)) {
-      style = { ...style, [partName]: "#000" };
-    }
-  }
-  return style;
-};
 
 const Lives = ({ livesRemain, maxLives }) => {
   return (
     <div id="lives">
-      <span>
-        Lives:
-        <br />
+      <div id="lives-label">Lives:</div>
+      <div id="hearts">
         {Array(maxLives)
           .fill()
           .map((elem, i) => {
@@ -39,10 +16,9 @@ const Lives = ({ livesRemain, maxLives }) => {
               return <Heart isBlack={true} />;
             }
           })}
-      </span>
-      <br />
+      </div>
 
-      <Hangman style={hangmanStyle(livesRemain)} />
+      {/* <HangmanSvg id="hangman" style={hangmanStyle(livesRemain)} /> */}
     </div>
   );
 };

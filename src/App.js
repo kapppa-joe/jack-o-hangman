@@ -4,22 +4,20 @@ import { useState, useEffect } from "react";
 
 import DisplayScore from "./components/DisplayScore";
 import Header from "./components/Header";
-import WordHints from "./components/WordHints";
-import Guess from "./components/Guess";
-import Lives from "./components/Lives";
+import Main from "./components/Main";
 import GameOver from "./components/GameOver";
 
 import { chooseWord, judgeGuess } from "./utils";
 
 function App() {
   const { category, word } = chooseWord();
-  const [wordToGuess, setWordToGuess] = useState(word);
-  const [categoryChosen, setCategory] = useState(category);
+  const [wordToGuess, setWordToGuess] = useState(word); // m
+  const [categoryChosen, setCategory] = useState(category); //m
 
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(0); // k
 
   const [lettersGuessed, setLettersGuessed] = useState([]);
-  const [jumpScareClass, setJumpScareClass] = useState([]);
+  const [jumpScareClass, setJumpScareClass] = useState([]); //k
   const [isGameOver, setGameOver] = useState(false);
 
   const resetGame = ({ keepScore = false }) => {
@@ -45,7 +43,6 @@ function App() {
     .every((letter) => lettersGuessed.includes(letter));
 
   if (gotAllLetters) {
-    console.log("here");
     // TODO: make some winning effect and trigger here.
     setScore((currScore) => currScore + 1);
     resetGame({ keepScore: true });
@@ -75,18 +72,17 @@ function App() {
     <div className={`App ${jumpScareClass.join(" ")}`}>
       <DisplayScore score={score} />
       <Header resetGame={resetGame} />
-      <WordHints
+
+      <Main
         wordToGuess={wordToGuess}
         categoryChosen={categoryChosen}
         lettersGuessed={lettersGuessed}
-      />
-      <Guess
         setLettersGuessed={setLettersGuessed}
         correctGuess={correctGuess}
         wrongGuess={wrongGuess}
-        usGameOver={isGameOver}
+        maxLives={maxLives}
+        livesRemain={livesRemain}
       />
-      <Lives maxLives={maxLives} livesRemain={livesRemain} />
       {isGameOver ? <GameOver /> : null}
     </div>
   );
