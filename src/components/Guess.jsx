@@ -11,7 +11,7 @@ const Guess = ({ correctGuess, wrongGuess, setLettersGuessed, isGameOver }) => {
 
   return (
     <div id="guess">
-      <div id="keyboard">
+      <span id="keyboard">
         {letters.map((letter) => (
           <LetterButton
             isGameOver={isGameOver}
@@ -21,7 +21,7 @@ const Guess = ({ correctGuess, wrongGuess, setLettersGuessed, isGameOver }) => {
             onClick={() => chooseLetter(letter)}
           />
         ))}
-      </div>
+      </span>
     </div>
   );
 };

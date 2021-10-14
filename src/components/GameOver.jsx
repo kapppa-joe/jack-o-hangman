@@ -10,7 +10,10 @@ const GameOver = () => {
           backgroundImage: `url(${splatter})`,
         }}
       ></div>
-      <div className="overlay gameover-message non-clickable">You lose.</div>
+      <div className="overlay gameover-message non-clickable">
+        You lose.
+        <span className="show-reset-button">{`...try again? -->`}</span>
+      </div>
     </div>
   );
 };

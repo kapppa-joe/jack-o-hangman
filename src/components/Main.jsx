@@ -5,6 +5,7 @@ import Guess from "./Guess";
 import Lives from "./Lives";
 import Hangman from "./Hangman";
 import GameOver from "./GameOver";
+import VictoryEffect from "./VictoryEffect";
 import ResetButton from "./ResetButton";
 
 import { chooseWord, judgeGuess } from "../utils";
@@ -18,6 +19,7 @@ const Main = (props) => {
   const [categoryChosen, setCategory] = useState(category);
   const [lettersGuessed, setLettersGuessed] = useState([]);
   const [isGameOver, setGameOver] = useState(false);
+  const [isVictory, setVictory] = useState(false);
 
   // actual function to reset game state.
   // not involve any animation
@@ -45,7 +47,7 @@ const Main = (props) => {
     .every((letter) => lettersGuessed.includes(letter));
 
   if (gotAllLetters) {
-    // TODO: make some winning effect and trigger here.
+    setVictory(true);
     incScore();
     resetGame({ keepScore: true });
   }
@@ -58,8 +60,10 @@ const Main = (props) => {
     } else if (livesRemain === 1) {
       setTimeout(() => setJumpScareClass(["jump-scare-stage-2"]), 2000);
     } else if (livesRemain === 0) {
-      setJumpScareClass(["jump-scare-stage-2 game-over"]);
-      setGameOver(true);
+      setTimeout(() => {
+        setJumpScareClass(["jump-scare-stage-2 game-over"]);
+        setGameOver(true);
+      }, 600);
     }
   }, [livesRemain]);
 
@@ -76,16 +80,19 @@ const Main = (props) => {
         wordToGuess={wordToGuess}
         categoryChosen={categoryChosen}
         lettersGuessed={lettersGuessed}
+        isGameOver={isGameOver}
       />
       <Guess
         setLettersGuessed={setLettersGuessed}
         correctGuess={correctGuess}
         wrongGuess={wrongGuess}
-        usGameOver={isGameOver}
+        isGameOver={isGameOver}
       />
       <Lives maxLives={maxLives} livesRemain={livesRemain} />
       <Hangman livesRemain={livesRemain} />
       {isGameOver ? <GameOver /> : null}
+      {isVictory ? <VictoryEffect setVictory={setVictory} /> : null}
+      {/* <VictoryEffect /> */}
     </div>
   );
 };

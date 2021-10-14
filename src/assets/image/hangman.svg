@@ -2,7 +2,7 @@
   <!-- svg-source:excalidraw -->
   <def>
     <style>
-      .hanging-rack {fill: #000}
+      .hanging-rack {fill: var(--hangman-colour)}
       .hangman-head {fill: var(--hangman-head-colour)}
       .hangman-body {fill: var(--hangman-body-colour)}
       .hangman-leftarm {fill: var(--hangman-leftarm-colour)}

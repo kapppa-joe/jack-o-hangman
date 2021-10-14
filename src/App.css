@@ -3,46 +3,19 @@
   src: local("Virgil"), url(./assets/fonts/Virgil.woff2) format("woff2");
 }
 
-/* 
-:root {
-  --spacing: 6px;
-  font-size: 20px;
-  --red-heart-colour: #fa5252;
-  --hearts-init-opacity: 0;
-  --hearts-init-animation-delay: 0;
-
-  --header-text-colour: #333;
-  --header-bg-colour: #ffa500;
-  --body-text-colour: #333;
-  --body-bg-colour: #f0f0f0d0;
-}
-
-@media only screen and (min-width: 576px) {
-  :root {
-    --spacing: 8px;
-    font-size: 28px;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  :root {
-    --spacing: 12px;
-    font-size: 32px;
-  }
-} */
-
 .App {
   font-family: "Virgil", cursive;
   text-align: center;
 
   display: grid;
   height: 100vh;
+  width: 100vw;
   grid-template-rows: 6em auto;
   grid-template-areas:
     "header"
     "main";
 
-  /* overflow-y: hidden; */
+  overflow: hidden;
   background: url("./assets/image/pumpkin-background.svg");
   animation: bg-scrolling 1000s linear infinite;
 }
@@ -85,6 +58,8 @@
   --header-bg-colour: #ffa500e0;
   --body-text-colour: #333;
   --body-bg-colour: #f0f0f0d0;
+  --hangman-colour: #000;
+  --keyboard-highlight-colour: #ffa50030;
 }
 
 .App.jump-scare-stage-1 {
@@ -99,30 +74,55 @@
 
   --body-text-colour: #ccc;
   --body-bg-colour: unset;
+  --hangman-colour: #c00;
 
   background: url("./assets/image/pumpkin-background-dark.svg");
+}
+
+.App.jump-scare-stage-1 #death-svg {
+  opacity: 0.3;
+  filter: saturate(0);
 }
 
 .App.jump-scare-stage-1 #keyboard {
   background: #ff300060;
 }
 
-.App.jump-scare-stage-1 #hangman {
-  filter: drop-shadow(0 0 20px #c00) brightness(1.5);
+.App.jump-scare-stage-1 #hangman-svg {
+  filter: drop-shadow(0 0 5px #c00) brightness(1.2);
 }
 
 .App.jump-scare-stage-2 {
   --header-text-colour: #ccc;
-  --header-bg-colour: #333;
+  --header-bg-colour: #100;
   --body-bg-colour: unset;
   --body-text-colour: #ccc;
 
-  background: radial-gradient(ellipse at bottom, #ccc 0%, #000 100%);
+  background: radial-gradient(ellipse at bottom, #999 0%, #000 100%);
+}
+
+.App.jump-scare-stage-2 #death-svg {
+  opacity: 1;
+}
+
+.App.jump-scare-stage-2 #keyboard {
   filter: saturate(0);
 }
 
 .App.game-over {
   filter: none;
+}
+
+.App.game-over #death-svg {
+  opacity: 0;
+}
+
+.App.game-over #hangman-svg {
+  opacity: 0;
+}
+
+.App.game-over .letter-button:not(.wrong-guess) {
+  animation: free-fall 1s cubic-bezier(0.47, 0, 0.745, 0.715) 0.5s forwards;
 }
 
 /* .App.jump-scare-stage-1::before {
@@ -141,7 +141,7 @@
   grid-area: main;
 
   display: grid;
-  overflow-y: hidden;
+  overflow: hidden;
 
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 6em 1fr 1fr;
@@ -369,7 +369,7 @@
   justify-content: center;
 
   border-radius: 3em;
-  background: #ffa50030;
+  background: var(--keyboard-highlight-colour);
   padding: calc(var(--spacing));
 }
 
@@ -503,11 +503,26 @@
 
 #hangman {
   grid-area: hangman;
-
+  position: relative;
+  top: 2em;
+  left: 2em;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: flex-end;
+}
+
+@media only screen and (min-width: 576px) {
+  #hangman {
+    justify-content: center;
+  }
+}
+
+#death-svg {
+  opacity: 0.05;
+  transform: scaleX(-1);
+  overflow: hidden;
+  transition: opacity ease 1s;
 }
 
 #word-hints {
@@ -516,12 +531,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2em;
+  max-width: 60vw;
 }
 
 #hints,
 #word-to-guess {
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr auto;
 }
 
 @media only screen and (min-width: 576px) {
@@ -530,14 +546,17 @@
     grid-template-columns: 1fr 1fr;
   }
   #hints,
-  #word-to-guess #hearts {
+  #word-to-guess,
+  #lives {
     display: grid;
     grid-template-rows: 1fr 1fr;
   }
 }
 
 #guessedWord {
+  max-width: 33vw;
   letter-spacing: var(--spacing);
+  word-wrap: break-word;
 }
 
 #word-hints #category {
@@ -557,18 +576,6 @@
   flex-wrap: nowrap;
   gap: 0.2em;
 }
-
-/* #lives {
-  grid-area: lives;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-
-  justify-items: center;
-}
-
-#hearts {
-  grid-area: hearts;
-} */
 
 /*  
  *           Jump scare effects related
@@ -601,7 +608,7 @@
 
 .blood-effect.gameover {
   opacity: 1;
-  animation: blood-effect-gameover 3s linear forwards;
+  animation: blood-effect-gameover 3s linear 1s forwards;
 }
 
 @keyframes blood-effect-gameover {
@@ -627,6 +634,14 @@
   font-size: 3em;
 
   animation: gameover-message 2s ease-out 2s 1 forwards;
+}
+
+.show-reset-button {
+  position: fixed;
+  color: #fc0;
+  font-size: 2rem;
+  top: 2rem;
+  right: 6rem;
 }
 
 @keyframes gameover-message {
@@ -710,5 +725,44 @@ div.jump-scare-stage-1 .letter-button {
   }
   58% {
     background: unset;
+  }
+}
+
+.victory-effect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.victory-effect .green-glow-appear {
+  opacity: 0;
+  width: 300px;
+  height: 300px;
+  border-radius: 100%;
+  box-shadow: inset 0 0 50px #fff, inset 20px 0 80px #ff0,
+    inset -20px 0 80px #0f0, inset 20px 0 300px #ff0, inset -20px 0 300px #0f0,
+    0 0 50px #fff, -10px 0 80px #ff0, 10px 0 80px #0f0;
+
+  animation: enlarge 2s ease forwards;
+  animation-play-state: paused;
+}
+
+.victory-effect .green-glow-appear-active {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+.victory-effect .green-glow-enter-done {
+  opacity: 0;
+}
+
+@keyframes enlarge {
+  0% {
+    transform: scale(0.2);
+    filter: blur(2px);
+  }
+  100% {
+    transform: scale(5);
+    filter: blur(50px) opacity(0.1);
   }
 }

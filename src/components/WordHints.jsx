@@ -1,4 +1,19 @@
-const WordHints = ({ wordToGuess, categoryChosen, lettersGuessed }) => {
+const WordHints = ({
+  wordToGuess,
+  categoryChosen,
+  lettersGuessed,
+  isGameOver,
+}) => {
+  const hideWord = (wordToGuess) => {
+    return wordToGuess.split("").map((letter) => {
+      if (lettersGuessed.includes(letter)) {
+        return `${letter}`;
+      } else {
+        return "_";
+      }
+    });
+  };
+
   return (
     <div id="word-hints">
       <div id="hints">
@@ -9,13 +24,7 @@ const WordHints = ({ wordToGuess, categoryChosen, lettersGuessed }) => {
       <div id="word-to-guess">
         <span>Word to guess:</span>
         <span id="guessedWord">
-          {wordToGuess.split("").map((letter) => {
-            if (lettersGuessed.includes(letter)) {
-              return `${letter}`;
-            } else {
-              return "_";
-            }
-          })}
+          {isGameOver ? wordToGuess : hideWord(wordToGuess)}
         </span>
       </div>
     </div>

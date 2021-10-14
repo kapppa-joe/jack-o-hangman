@@ -1,13 +1,50 @@
 const pool = [
   {
-    category: "colour",
-    words: ["blue", "red", "green", "white", "black", "brown", "cyan"],
+    category: "a monster",
+    words: [
+      "vampire",
+      "werewolf",
+      "mummy",
+      "ghoul",
+      "demon",
+      "frankenstein",
+      "zombie",
+      "spectre",
+      "wraith",
+    ],
   },
   {
-    category: "animal",
-    words: ["cat", "dog", "lion", "fish", "goat", "pig", "rat"],
+    category: "an animal",
+    words: [
+      "cat",
+      "dog",
+      "frog",
+      "duck",
+      "lion",
+      "fish",
+      "goat",
+      "pig",
+      "rat",
+      "bat",
+      "lamb",
+      "crab",
+    ],
+  },
+  {
+    category: "a vegetable",
+    words: [
+      "pumpkin",
+      "avocado",
+      "beetroot",
+      "parsnip",
+      "spinach",
+      "cucumber",
+      "aubergine",
+    ],
   },
 ];
+
+const debugpool = [{ category: "for debug :)", words: ["hi"] }];
 
 export function chooseWord() {
   const categoryObj = randomFrom(pool);
