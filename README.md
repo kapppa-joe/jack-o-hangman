@@ -17,7 +17,7 @@ https://pixabay.com/vectors/halloween-icons-doodle-outline-5656626/
 https://pixabay.com/vectors/ghost-haunt-spooky-to-haunt-1775547/
 
 <a href='https://www.freepik.com/vectors/pattern'>Pattern vector created by freepik - www.freepik.com</a>
-https://www.freepik.com/free-vector/hand-drawn-flat-halloween-pattern-design_17723467.htm#page=1&query=Halloween%20background%20pattern&position=2&from_view=search
+https://www.freepik.com/free-vector/hand-drawn-flat-halloween-pattern-design_17723467.htm#page=1&query=Halloween%20background%20pattern&position=2&from_view=search (not used)
 
 https://www.freepik.com/free-vector/flat-halloween-pattern-design_17672231.htm?query=Halloween%20background%20pattern
 https://pixabay.com/illustrations/digital-paper-halloween-candy-5316727/

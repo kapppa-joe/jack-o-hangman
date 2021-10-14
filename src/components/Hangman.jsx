@@ -18,9 +18,10 @@ const hangmanStyle = (livesRemain) => {
   }
 
   let style = { fill: "transparent" };
+  const strokeColour = livesRemain > 4 ? "#000" : "#900";
   for (const [num, partName] of Object.entries(hangmanPartsNames)) {
     if (livesRemain < parseInt(num)) {
-      style = { ...style, [partName]: "#000" };
+      style = { ...style, [partName]: strokeColour };
     }
   }
   return style;

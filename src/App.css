@@ -2,6 +2,7 @@
   font-family: "Virgil";
   src: local("Virgil"), url(./assets/fonts/Virgil.woff2) format("woff2");
 }
+
 /* 
 :root {
   --spacing: 6px;
@@ -41,12 +42,12 @@
     "header"
     "main";
 
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
   background: url("./assets/image/pumpkin-background.svg");
-  animation: bg-scrolling-reverse 1000s linear infinite both;
+  animation: bg-scrolling 1000s linear infinite;
 }
 
-@keyframes bg-scrolling-reverse {
+@keyframes bg-scrolling {
   100% {
     background-position: -10000px -10000px;
   }
@@ -73,7 +74,7 @@
   }
 }
 
-/* color theme (for jump scare purpose! :D) */
+/* color theme (for jump scare purpose! :D ) */
 
 .App {
   --red-heart-colour: #fa5252;
@@ -81,16 +82,60 @@
   --hearts-init-animation-delay: 0;
 
   --header-text-colour: #333;
-  --header-bg-colour: #ffa500;
+  --header-bg-colour: #ffa500e0;
   --body-text-colour: #333;
   --body-bg-colour: #f0f0f0d0;
 }
 
 .App.jump-scare-stage-1 {
-  --header-text-colour: #fa5252;
-  --header-bg-colour: #333;
+  --header-text-colour: #f00;
+  --header-bg-colour: -webkit-linear-gradient(
+    0deg,
+    #400 0%,
+    #700 30%,
+    #700 70%,
+    #400
+  );
+
   --body-text-colour: #ccc;
+  --body-bg-colour: unset;
+
+  background: url("./assets/image/pumpkin-background-dark.svg");
 }
+
+.App.jump-scare-stage-1 #keyboard {
+  background: #ff300060;
+}
+
+.App.jump-scare-stage-1 #hangman {
+  filter: drop-shadow(0 0 20px #c00) brightness(1.5);
+}
+
+.App.jump-scare-stage-2 {
+  --header-text-colour: #ccc;
+  --header-bg-colour: #333;
+  --body-bg-colour: unset;
+  --body-text-colour: #ccc;
+
+  background: radial-gradient(ellipse at bottom, #ccc 0%, #000 100%);
+  filter: saturate(0);
+}
+
+.App.game-over {
+  filter: none;
+}
+
+/* .App.jump-scare-stage-1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("./assets/image/pumpkin-background.svg");
+  filter: grayscale(100%) opacity(0.9) brightness(0) invert(0.7);
+  z-index: -1;
+} */
 
 #main {
   grid-area: main;
@@ -106,16 +151,8 @@
     "hangman hangman hangman"
     "guess guess guess";
 
-  background: #f0f0f0d0;
-}
-
-main::before {
-  content: "";
-  position: relative;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  background: var(--body-bg-colour);
+  color: var(--body-text-colour);
 }
 
 @media only screen and (min-width: 768px) {
@@ -151,8 +188,8 @@ main::before {
   align-content: center;
   width: 100vw;
 
-  background: #ffa500;
-  color: #333;
+  background: var(--header-bg-colour);
+  color: var(--header-text-colour);
   /* background-color: #000; */
 }
 
@@ -192,15 +229,15 @@ main::before {
   flex: 1 1 0;
 }
 
-.jump-scare-stage-1 #header .game-title {
-  background-image: -webkit-linear-gradient(0deg, #f00 0%, #700 70%, #400);
+.jump-scare-stage-1 #header {
+  background: -webkit-linear-gradient(0deg, #400 0%, #700 30%, #700 70%, #400);
 }
 
 /* 
     reset button and related animations
  */
 
-#header .reset-button {
+#main .reset-button {
   z-index: 3;
 
   position: fixed;
@@ -260,6 +297,7 @@ main::before {
 .reset-splash {
   position: fixed;
   bottom: calc(100px + 100vh);
+  left: 0;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 75%);
@@ -600,12 +638,12 @@ main::before {
   }
 }
 
-.jump-scare-stage-1 div:not(.overlay) {
-  animation: red-flash 0.5s ease 1 !important;
+.jump-scare-stage-1 div:not(.non-clickable) {
+  animation: red-flash 0.5s ease 1;
 }
 
 div.jump-scare-stage-1 .letter-button {
-  color: #f00 !important;
+  color: #f00;
 }
 
 @keyframes red-flash {
