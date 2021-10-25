@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/static/css/main.ced88016.chunk.css",
-    "main.js": "/static/js/main.9005f1b3.chunk.js",
-    "main.js.map": "/static/js/main.9005f1b3.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.2afae820.js",
-    "runtime-main.js.map": "/static/js/runtime-main.2afae820.js.map",
-    "static/css/2.679831fc.chunk.css": "/static/css/2.679831fc.chunk.css",
-    "static/js/2.37787b87.chunk.js": "/static/js/2.37787b87.chunk.js",
-    "static/js/2.37787b87.chunk.js.map": "/static/js/2.37787b87.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.679831fc.chunk.css.map": "/static/css/2.679831fc.chunk.css.map",
-    "static/css/main.ced88016.chunk.css.map": "/static/css/main.ced88016.chunk.css.map",
-    "static/js/2.37787b87.chunk.js.LICENSE.txt": "/static/js/2.37787b87.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/static/media/pumpkin-background.d4adbcd0.svg",
-    "static/media/death.9dc8dbf1.svg": "/static/media/death.9dc8dbf1.svg",
-    "static/media/hangman.e392a99f.svg": "/static/media/hangman.e392a99f.svg",
-    "static/media/hearts.be6e4ee1.svg": "/static/media/hearts.be6e4ee1.svg",
-    "static/media/noose.bed3f6f6.svg": "/static/media/noose.bed3f6f6.svg"
+    "main.css": "/jack-o-hangman/static/css/main.8b3e3202.chunk.css",
+    "main.js": "/jack-o-hangman/static/js/main.9005f1b3.chunk.js",
+    "main.js.map": "/jack-o-hangman/static/js/main.9005f1b3.chunk.js.map",
+    "runtime-main.js": "/jack-o-hangman/static/js/runtime-main.47532d9a.js",
+    "runtime-main.js.map": "/jack-o-hangman/static/js/runtime-main.47532d9a.js.map",
+    "static/css/2.679831fc.chunk.css": "/jack-o-hangman/static/css/2.679831fc.chunk.css",
+    "static/js/2.37787b87.chunk.js": "/jack-o-hangman/static/js/2.37787b87.chunk.js",
+    "static/js/2.37787b87.chunk.js.map": "/jack-o-hangman/static/js/2.37787b87.chunk.js.map",
+    "index.html": "/jack-o-hangman/index.html",
+    "static/css/2.679831fc.chunk.css.map": "/jack-o-hangman/static/css/2.679831fc.chunk.css.map",
+    "static/css/main.8b3e3202.chunk.css.map": "/jack-o-hangman/static/css/main.8b3e3202.chunk.css.map",
+    "static/js/2.37787b87.chunk.js.LICENSE.txt": "/jack-o-hangman/static/js/2.37787b87.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/jack-o-hangman/static/media/pumpkin-background.d4adbcd0.svg",
+    "static/media/death.9dc8dbf1.svg": "/jack-o-hangman/static/media/death.9dc8dbf1.svg",
+    "static/media/hangman.e392a99f.svg": "/jack-o-hangman/static/media/hangman.e392a99f.svg",
+    "static/media/hearts.be6e4ee1.svg": "/jack-o-hangman/static/media/hearts.be6e4ee1.svg",
+    "static/media/noose.bed3f6f6.svg": "/jack-o-hangman/static/media/noose.bed3f6f6.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.2afae820.js",
+    "static/js/runtime-main.47532d9a.js",
     "static/css/2.679831fc.chunk.css",
     "static/js/2.37787b87.chunk.js",
-    "static/css/main.ced88016.chunk.css",
+    "static/css/main.8b3e3202.chunk.css",
     "static/js/main.9005f1b3.chunk.js"
   ]
 }
