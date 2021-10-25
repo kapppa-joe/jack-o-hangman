@@ -4,6 +4,8 @@ A little word guessing game with a halloween theme. Built as a personal project 
 
 [Spoiler: may contain jumpscare]
 
+A running version is hosted here: [Jack-o-hangman](https://kapppa-joe.github.io/jack-o-hangman/)
+
 ![Screenshot](/src/assets/image/jack-o-hangman-screenshot.png)
 
 ## Install
