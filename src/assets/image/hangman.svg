@@ -15,6 +15,7 @@
       rect {
         transition: fill 0.3s ease-out;
       }
+
     </style>
   </def>
  
